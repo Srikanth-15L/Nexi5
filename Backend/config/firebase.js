@@ -18,6 +18,8 @@ if (process.env.FIREBASE_SERVICE_ACCOUNT) {
 if (!credential) {
     const possiblePaths = [
         '/etc/secrets/firebase.json', // Render Secret File standard path
+        '/etc/secrets/ServiceAccountKey-prod.json', // Alternate name they might have used
+        '/etc/secrets/ServiceAccountKey.json',
         path.resolve(__dirname, './ServiceAccountKey-prod.json'),
         path.resolve(__dirname, './ServiceAccountKey-dev.json')
     ];
@@ -32,7 +34,19 @@ if (!credential) {
 }
 
 if (!credential) {
-    console.error("CRITICAL ERROR: No valid Firebase Service Account found in Environment Variables or Secret Files.");
+    console.error("--- DIAGNOSTIC INFO ---");
+    console.error("No valid Firebase Service Account found in Environment Variables or Secret Files.");
+    try {
+        if (fs.existsSync('/etc/secrets')) {
+            const files = fs.readdirSync('/etc/secrets');
+            console.error("Files present in /etc/secrets directory: ", files);
+        } else {
+            console.error("/etc/secrets directory does NOT exist. You haven't mounted any Secret Files.");
+        }
+    } catch (e) {
+        console.error("Could not read /etc/secrets", e);
+    }
+    console.error("-----------------------");
     process.exit(1); // Force crash so Render logs the exact reason
 }
 
