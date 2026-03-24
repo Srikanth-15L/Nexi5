@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Search, Mail, Building, Briefcase, UserCircle, Globe, Users, TrendingUp, ChevronRight, Phone, MapPin, MoreVertical, Clock, CheckCircle2, Filter } from "lucide-react";
+import { Search, Mail, Building, Briefcase, UserCircle, Globe, Users, TrendingUp, ChevronRight, Phone, MapPin, MoreVertical, Clock, CheckCircle2, Filter, X } from "lucide-react";
 import { useAppContext } from "../hooks/useAppContext";
 import { getInitials } from "../lib/stringUtils";
 import { useNavigate } from "react-router-dom";
@@ -80,14 +80,22 @@ function Directory() {
         }
         <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm space-y-4">
             <div className="flex flex-col lg:flex-row gap-4">
-                <div className="relative flex-1 group">
-                    <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-primary transition-colors" size={18} />
+                <div className="relative flex-1 w-full group">
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#0f4184] transition-colors duration-300" size={18} />
                     <input
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                         placeholder="Search by name, role or expertise..."
-                        className="w-full bg-white border border-gray-200 rounded-xl py-3 pl-11 pr-4 text-sm focus:border-primary focus:ring-4 focus:ring-primary/5 outline-none transition-all placeholder:text-gray-400 font-medium text-textPrimary"
+                        className="w-full bg-gray-50/50 border border-gray-200 rounded-2xl py-3 pl-12 pr-10 text-[14px] sm:text-[15px] focus:bg-white focus:border-[#0f4184] focus:ring-[4px] focus:ring-[#0f4184]/10 outline-none transition-all duration-300 placeholder:text-gray-400 font-medium text-textPrimary shadow-sm hover:border-gray-300"
                     />
+                    {search && (
+                      <button
+                        onClick={() => setSearch("")}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 text-gray-400 hover:text-rose-500 hover:bg-rose-50 rounded-lg transition-colors"
+                      >
+                        <X size={16} />
+                      </button>
+                    )}
                 </div>
                 <div className="flex flex-wrap gap-2 items-center">
                     <div className="flex items-center gap-2 px-3 py-2 bg-gray-50 rounded-xl text-textSecondary border border-gray-100">

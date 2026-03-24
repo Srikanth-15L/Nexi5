@@ -307,14 +307,22 @@ function CommunicationPanel() {
     /* Search */
   }
                     <div className="p-3 border-b border-slate-50 dark:border-slate-800">
-                      <div className="relative">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={13} />
+                      <div className="relative group">
+                        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#0f4184] transition-colors duration-300" size={14} />
                         <input
     value={chatSearch}
     onChange={(e) => setChatSearch(e.target.value)}
     placeholder="Search conversations..."
-    className="w-full pl-8 pr-3 py-2 text-xs bg-slate-100 dark:bg-slate-800 rounded-xl text-slate-800 dark:text-white placeholder-slate-400 outline-none border border-transparent focus:border-cyan-300 dark:focus:border-cyan-700 transition-all"
+    className="w-full pl-10 pr-9 py-2.5 text-xs sm:text-[13px] bg-slate-100 dark:bg-slate-800 rounded-xl text-slate-800 dark:text-white placeholder-slate-400 outline-none border border-transparent focus:bg-white focus:border-[#0f4184] focus:ring-[3px] focus:ring-[#0f4184]/10 transition-all duration-300 shadow-sm"
   />
+                        {chatSearch && (
+                          <button
+                            onClick={() => setChatSearch("")}
+                            className="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-rose-500 transition-colors"
+                          >
+                            <X size={14} />
+                          </button>
+                        )}
                       </div>
                     </div>
                     {

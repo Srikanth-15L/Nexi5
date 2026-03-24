@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Bell, Search, LogOut, CheckCircle, ClipboardList, Calendar, Megaphone, Menu, Moon, Sun, Phone, ShieldAlert } from "lucide-react";
+import { Bell, Search, LogOut, CheckCircle, ClipboardList, Calendar, Megaphone, Menu, Moon, Sun, Phone, ShieldAlert, X } from "lucide-react";
 import { useAppContext } from "../hooks/useAppContext";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
@@ -111,8 +111,8 @@ function Topbar({ onMenuToggle }) {
       /* Center: Search bar */
     }
     <div className="relative hidden md:block flex-1 max-w-md">
-      <div className="flex items-center relative">
-        <Search className="absolute text-slate-400 left-4 z-10 pointer-events-none" size={16} />
+      <div className="flex items-center relative group w-full">
+        <Search className="absolute left-4 z-10 text-gray-400 group-focus-within:text-[#0f4184] transition-colors duration-300 pointer-events-none" size={18} />
         <input
           type="text"
           value={searchQuery}
@@ -123,8 +123,16 @@ function Topbar({ onMenuToggle }) {
             setIsSearchFocused(false);
             setSearchSuggestions([]);
           }, 200)}
-            className="w-full bg-gray-50/50 border border-gray-200/50 focus:border-primary/20 focus:bg-white rounded-[24px] py-4.5 pl-16 pr-12 text-[13px] font-black tracking-tight transition-all duration-500 outline-none placeholder:text-gray-400 text-textPrimary focus:ring-[12px] focus:ring-primary/5 uppercase soft-shadow focus:shadow-nexi5"
+          className="w-full bg-gray-50/50 border border-gray-200 rounded-2xl py-3 pl-12 pr-12 text-[14px] font-medium transition-all duration-300 outline-none placeholder:text-gray-400 text-textPrimary focus:bg-white focus:border-[#0f4184] focus:ring-[4px] focus:ring-[#0f4184]/10 shadow-sm focus:shadow-md hover:border-gray-300"
         />
+        {searchQuery && (
+          <button
+            onClick={() => { setSearchQuery(""); setSearchSuggestions([]); }}
+            className="absolute right-3 z-20 p-1.5 text-gray-400 hover:text-rose-500 hover:bg-rose-50 rounded-lg transition-colors"
+          >
+            <X size={16} />
+          </button>
+        )}
       </div>
       <AnimatePresence>
         {searchSuggestions.length > 0 && <motion.div

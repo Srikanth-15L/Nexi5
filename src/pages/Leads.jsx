@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Plus, Search, MoreVertical, Edit2, Mail, Phone, Building, Target, Zap, TrendingUp, Filter, ChevronRight, Globe } from "lucide-react";
+import { Plus, Search, MoreVertical, Edit2, Mail, Phone, Building, Target, Zap, TrendingUp, Filter, ChevronRight, Globe, X } from "lucide-react";
 import { useAppContext } from "../hooks/useAppContext";
 import LeadDrawer from "../components/drawers/LeadDrawer";
 const STATUS_CONFIG = {
@@ -76,14 +76,22 @@ function Leads() {
             /* Toolbar */
         }
         <div className="flex flex-col sm:flex-row gap-4">
-            <div className="relative flex-1 group">
-                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-primary transition-colors" size={18} />
+            <div className="relative flex-1 w-full sm:max-w-md group">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#0f4184] transition-colors duration-300" size={18} />
                 <input
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     placeholder="Search leads, companies..."
-                    className="w-full bg-white border border-gray-200 rounded-xl py-3 pl-11 pr-4 text-sm focus:border-primary focus:ring-4 focus:ring-primary/5 outline-none transition-all placeholder:text-gray-400 font-medium text-textPrimary h-12"
+                    className="w-full bg-gray-50/50 border border-gray-200 rounded-2xl py-3 pl-12 pr-10 text-[14px] sm:text-[15px] focus:bg-white focus:border-[#0f4184] focus:ring-[4px] focus:ring-[#0f4184]/10 outline-none transition-all duration-300 placeholder:text-gray-400 font-medium text-textPrimary shadow-sm hover:border-gray-300"
                 />
+                {searchTerm && (
+                  <button
+                    onClick={() => setSearchTerm("")}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 text-gray-400 hover:text-rose-500 hover:bg-rose-50 rounded-lg transition-colors"
+                  >
+                    <X size={16} />
+                  </button>
+                )}
             </div>
             <button className="flex items-center gap-2 px-5 py-2 border border-gray-200 rounded-xl text-[11px] font-bold uppercase tracking-widest text-textSecondary bg-white hover:bg-gray-50 hover:border-primary/30 transition-all shadow-sm">
                 <Filter size={18} className="text-primary" /> Filters
