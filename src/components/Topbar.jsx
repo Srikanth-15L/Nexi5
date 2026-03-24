@@ -85,52 +85,48 @@ function Topbar({ onMenuToggle }) {
     }
     return () => clearInterval(interval);
   }, [isCheckedIn, checkInTime]);
-  return <header className="h-[70px] md:h-[85px] lg:h-[100px] glass border-b border-gray-100/50 px-4 sm:px-6 lg:px-10 flex items-center justify-between sticky top-0 z-30 gap-3 sm:gap-6 lg:gap-10 flex-shrink-0 topbar-shadow">
+  return <header className="h-16 glass border-b border-gray-100/50 px-4 sm:px-6 lg:px-8 flex items-center justify-between sticky top-0 z-30 gap-3 sm:gap-6 flex-shrink-0 topbar-shadow">
 
     {
       /* Left: Mobile menu + Page Title */
     }
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-3">
       <button
         onClick={onMenuToggle}
         className="lg:hidden p-2 rounded-lg hover:bg-gray-50 text-slate-500 transition-all"
       >
         <Menu size={20} />
       </button>
-      <div className="flex flex-col">
-        <h1 className="text-[14px] md:text-[16px] lg:text-[18px] font-black gradient-text tracking-tight uppercase leading-none">
-          Welcome, {currentUser?.name?.split(" ")[0] || "User"}
-        </h1>
-        <p className="hidden sm:block text-[10px] font-black text-primary uppercase tracking-[0.3em] mt-1.5 opacity-60">
-          {currentUser?.role || "Core Node"} Perspective
-        </p>
-      </div>
     </div>
 
     {
       /* Center: Search bar */
     }
-    <div className="relative hidden md:block flex-1 max-w-md">
+    <motion.div
+      animate={isSearchFocused ? { scale: 1.025, x: 16 } : { scale: 1, x: 0 }}
+      transition={{ type: "spring", stiffness: 280, damping: 26 }}
+      className="relative hidden md:block flex-1 max-w-lg"
+    >
       <div className="flex items-center relative group w-full">
-        <Search className="absolute left-4 z-10 text-gray-400 group-focus-within:text-[#0f4184] transition-colors duration-300 pointer-events-none" size={18} />
+        <Search className="absolute left-4 z-10 text-gray-400 group-focus-within:text-[#0f4184] transition-colors duration-300 pointer-events-none" size={16} />
         <input
           type="text"
           value={searchQuery}
-          placeholder="Search for employees, tasks, or documents..."
+          placeholder="Search anything..."
           onChange={(e) => handleSearchChange(e.target.value)}
           onFocus={() => setIsSearchFocused(true)}
           onBlur={() => setTimeout(() => {
             setIsSearchFocused(false);
             setSearchSuggestions([]);
           }, 200)}
-          className="w-full bg-gray-50/50 border border-gray-200 rounded-2xl py-3 pl-12 pr-12 text-[14px] font-medium transition-all duration-300 outline-none placeholder:text-gray-400 text-textPrimary focus:bg-white focus:border-[#0f4184] focus:ring-[4px] focus:ring-[#0f4184]/10 shadow-sm focus:shadow-md hover:border-gray-300"
+          className="w-full bg-gray-50/50 border border-gray-200 rounded-xl py-2 pl-10 pr-10 text-[13px] font-medium transition-all duration-300 outline-none placeholder:text-gray-400 text-textPrimary focus:bg-white focus:border-[#0f4184] focus:ring-[3px] focus:ring-[#0f4184]/10 shadow-sm hover:border-gray-300"
         />
         {searchQuery && (
           <button
             onClick={() => { setSearchQuery(""); setSearchSuggestions([]); }}
-            className="absolute right-3 z-20 p-1.5 text-gray-400 hover:text-rose-500 hover:bg-rose-50 rounded-lg transition-colors"
+            className="absolute right-3 z-20 p-1 text-gray-400 hover:text-rose-500 hover:bg-rose-50 rounded-lg transition-colors"
           >
-            <X size={16} />
+            <X size={14} />
           </button>
         )}
       </div>
@@ -155,14 +151,14 @@ function Topbar({ onMenuToggle }) {
           </button>)}
         </motion.div>}
       </AnimatePresence>
-    </div>
+    </motion.div>
 
     {
       /* Right Actions */
     }
-    <div className="flex items-center gap-4 ml-auto">
+    <div className="flex items-center gap-3 ml-auto">
       {/* Attendance Toggle */}
-      <div className="flex items-center gap-4 pr-6 border-r border-gray-100/50">
+      <div className="flex items-center gap-3 pr-4 border-r border-gray-100/50">
         <div className="hidden sm:flex flex-col items-end">
           <span className={`text-[10px] font-black uppercase tracking-[0.2em] ${isCheckedIn ? "text-primary" : "text-slate-400"} transition-colors`}>
             {isCheckedIn ? "Checked In" : "Checked Out"}
@@ -179,18 +175,16 @@ function Topbar({ onMenuToggle }) {
         </div>
         <button
           onClick={handleCheckInToggle}
-          className={`relative w-14 h-7 rounded-full transition-all duration-500 flex items-center px-1 group/toggle shadow-inner ${isCheckedIn ? "bg-primary" : "bg-gray-200"}`}
+          className={`relative w-12 h-6 rounded-full transition-all duration-500 flex items-center px-0.5 shadow-inner ${isCheckedIn ? "bg-primary" : "bg-gray-200"}`}
           title={isCheckedIn ? "Click to Check Out" : "Click to Check In"}
         >
           <motion.div
-            animate={{ x: isCheckedIn ? 28 : 0 }}
+            animate={{ x: isCheckedIn ? 24 : 0 }}
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
             className="w-5 h-5 rounded-full bg-white shadow-md flex items-center justify-center relative z-10"
           >
              <div className={`w-1.5 h-1.5 rounded-full ${isCheckedIn ? "bg-primary" : "bg-gray-300"} transition-colors duration-300`} />
           </motion.div>
-          
-          {/* Subtle Glow when checked in */}
           {isCheckedIn && (
             <motion.div 
               layoutId="toggleGlow"
@@ -206,10 +200,10 @@ function Topbar({ onMenuToggle }) {
       <div className="relative">
         <button
           onClick={() => setIsNotifOpen(!isNotifOpen)}
-            className={`relative p-4 rounded-[20px] transition-all duration-500 active:scale-90 border border-transparent ${isNotifOpen ? "bg-primary/5 text-primary border-primary/10 glow-shadow" : "text-gray-400 hover:bg-gray-50 hover:text-primary hover:border-gray-100"}`}
+            className={`relative p-2.5 rounded-xl transition-all duration-300 active:scale-90 border border-transparent ${isNotifOpen ? "bg-primary/5 text-primary border-primary/10" : "text-gray-400 hover:bg-gray-50 hover:text-primary hover:border-gray-100"}`}
         >
-          <Bell size={20} />
-          {unreadCount > 0 && <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-rose-500 rounded-full border-2 border-white" />}
+          <Bell size={18} />
+          {unreadCount > 0 && <span className="absolute top-1 right-1 w-2 h-2 bg-rose-500 rounded-full border-2 border-white" />}
         </button>
 
         <AnimatePresence>

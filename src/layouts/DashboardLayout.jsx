@@ -127,12 +127,12 @@ function DashboardLayout() {
     return (
       <div className="flex flex-col h-full">
         {/* Logo Section */}
-        <div className={`h-[140px] flex items-center justify-center shrink-0 border-b border-gray-100/50 transition-all duration-300 relative ${isSidebarOpen || mobile ? "px-6" : "px-2"}`}>
+        <div className={`h-[120px] flex items-center justify-center shrink-0 border-b border-gray-100/50 transition-all duration-300 relative ${isSidebarOpen || mobile ? "px-3" : "px-2"}`}>
           <div className="flex items-center justify-start h-full w-full overflow-hidden">
             <img
               src={brandLogo}
               alt="Nexi5 Logo"
-              className={`${isSidebarOpen || mobile ? "h-[120px]" : "h-[45px]"} w-auto object-contain transition-all duration-500 hover:scale-105 logo-glow`}
+              className={`${isSidebarOpen || mobile ? "h-[100px]" : "h-[48px]"} w-auto object-contain transition-all duration-500 hover:scale-105 logo-glow`}
               onClick={() => navigate('/dashboard')}
               style={{ cursor: 'pointer' }}
             />
@@ -359,7 +359,7 @@ function DashboardLayout() {
       <Topbar onMenuToggle={() => setMobileSidebarOpen(true)} />
 
       <main className="flex-1 overflow-x-hidden overflow-y-auto bg-slate-50/80 dark:bg-slate-950 custom-scrollbar">
-        <div className="p-4 sm:p-6 max-w-[1600px] mx-auto">
+        <div className="p-4 sm:p-5 max-w-[1600px] mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
