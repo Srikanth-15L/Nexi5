@@ -10,15 +10,17 @@ const { errorhandler,asynchandler} = require("./middleware/errorhandler");
 const app = express();
 
 
-app.use(helmet()); //security purpose
+app.use(helmet({ crossOriginResourcePolicy: { policy: "cross-origin" } })); // allow cross-origin API requests
 // dynamically allow the request origin
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json()); // parse the body
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
-
-
+// Root endpoint to prevent 404 on Render URL
+app.get("/", (req, res) => {
+  res.send("HRM Portal API is running...");
+});
 
 app.use("/api", routes);
 

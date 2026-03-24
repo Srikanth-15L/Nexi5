@@ -3,7 +3,7 @@ import { getCookie, setCookie, eraseCookie } from "../lib/cookieUtils";
 
 const AppContext = createContext(undefined);
 
-const API_BASE_URL = "http://localhost:5000/api";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
 
 export function AppProvider({ children }) {
   const [employees, setEmployees] = useState([]);
