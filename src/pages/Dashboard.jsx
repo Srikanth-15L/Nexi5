@@ -99,24 +99,25 @@ const StatCard = ({ title, value, icon: Icon, trend, color, delay, onClick }) =>
   transition={{ delay, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
   whileHover={{ y: -4, transition: { duration: 0.2 } }}
   onClick={onClick}
-  className="bg-white p-6 rounded-xl border border-gray-200 relative overflow-hidden group cursor-pointer shadow-nexi5"
+  className="bg-white p-4 sm:p-6 rounded-xl border border-gray-200 relative overflow-hidden group cursor-pointer shadow-nexi5"
 >
   <div className="flex justify-between items-start relative z-10">
-    <div>
-      <p className="text-sm font-semibold text-textSecondary uppercase tracking-wider">{title}</p>
-      <h3 className="text-3xl font-bold text-textPrimary mt-2 tabular-nums">
+    <div className="min-w-0 flex-1">
+      <p className="text-xs sm:text-sm font-semibold text-textSecondary uppercase tracking-wider truncate">{title}</p>
+      <h3 className="text-2xl sm:text-3xl font-bold text-textPrimary mt-1 sm:mt-2 tabular-nums">
         <AnimatedCounter value={value} />
       </h3>
-      <div className="flex items-center gap-1.5 mt-3">
+      <div className="flex items-center gap-1.5 mt-2 sm:mt-3 flex-wrap">
         <span className={`inline-flex items-center gap-0.5 px-2 py-0.5 rounded-lg text-xs font-bold ${trend >= 0 ? "bg-[#0f4184]/10 text-[#0b3166]" : "bg-red-100 text-red-600"}`}>
           {trend >= 0 ? <ArrowUpRight size={12} /> : <ArrowDownRight size={12} />}
           {Math.abs(trend)}%
         </span>
-        <span className="text-xs text-textSecondary">vs last month</span>
+        <span className="text-xs text-textSecondary hidden sm:inline">vs last month</span>
       </div>
     </div>
-    <div className={`w-12 h-12 rounded-xl ${iconBgMap[color] || iconBgMap.primary} flex items-center justify-center transition-transform duration-300 group-hover:scale-110`}>
-      <Icon size={24} />
+    <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl shrink-0 ${iconBgMap[color] || iconBgMap.primary} flex items-center justify-center transition-transform duration-300 group-hover:scale-110 ml-2`}>
+      <Icon size={20} className="sm:hidden" />
+      <Icon size={24} className="hidden sm:block" />
     </div>
   </div>
 </motion.div>;
@@ -185,15 +186,15 @@ function Dashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
         <div className="lg:col-span-2 space-y-6">
           {type === 'payroll' && (
-            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="bg-white p-6 rounded-xl border border-gray-200 shadow-nexi5">
-              <div className="flex items-center justify-between mb-6">
+            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="bg-white p-4 sm:p-6 rounded-xl border border-gray-200 shadow-nexi5">
+              <div className="flex items-center justify-between mb-4 sm:mb-6 flex-wrap gap-2">
                 <div>
                   <h3 className="font-semibold text-textPrimary text-base">Payroll Trend</h3>
                   <p className="text-xs text-textSecondary mt-1">Monthly expenditure in Lakhs (₹)</p>
                 </div>
                 <span className="px-3 py-1 rounded-lg text-xs font-semibold bg-[#0f4184]/10 text-[#0b3166]">Last 6 months</span>
               </div>
-              <div className="h-[280px] w-full">
+              <div className="h-[180px] sm:h-[280px] w-full">
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={payrollTrendData}>
                     <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
@@ -207,8 +208,8 @@ function Dashboard() {
             </motion.div>
           )}
           {(type === 'attendance' || type === 'recruitment' || type === 'sales') && (
-            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="bg-white p-6 rounded-xl border border-gray-200 shadow-nexi5">
-              <div className="flex items-center justify-between mb-6">
+            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="bg-white p-4 sm:p-6 rounded-xl border border-gray-200 shadow-nexi5">
+              <div className="flex items-center justify-between mb-4 sm:mb-6 flex-wrap gap-2">
                 <div>
                   <h3 className="font-semibold text-textPrimary text-base">
                     {type === 'attendance' ? 'Team Attendance' : type === 'recruitment' ? 'Candidate Sourcing' : 'Lead Conversion'}
@@ -216,7 +217,7 @@ function Dashboard() {
                   <p className="text-xs text-textSecondary mt-1">Weekly performance overview</p>
                 </div>
               </div>
-              <div className="h-[280px] w-full">
+              <div className="h-[180px] sm:h-[280px] w-full">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={attendanceTrendData}>
                     <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
@@ -312,7 +313,7 @@ function Dashboard() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 gap-3 sm:gap-4">
         {[
           { label: "Active Sessions", value: "24", icon: Activity, color: "text-blue-600", bg: "bg-blue-50" },
           { label: "System Load", value: "12%", icon: Zap, color: "text-amber-600", bg: "bg-amber-50" },

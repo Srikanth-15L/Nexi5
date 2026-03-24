@@ -100,7 +100,7 @@ function Leave() {
         {
             /* Status filter tabs */
         }
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6">
             {["All", "Pending", "Approved", "Rejected"].map((s) => {
                 const isActive = statusFilter === s;
                 const colors = {
@@ -112,10 +112,10 @@ function Leave() {
                 return <button
                     key={s}
                     onClick={() => setStatusFilter(s)}
-                    className={`p-6 rounded-xl border text-left transition-all relative overflow-hidden shadow-sm ${isActive ? colors[s] : "border-gray-100 bg-white hover:border-gray-200"}`}
+                    className={`p-4 sm:p-6 rounded-xl border text-left transition-all relative overflow-hidden shadow-sm ${isActive ? colors[s] : "border-gray-100 bg-white hover:border-gray-200"}`}
                 >
-                    <p className="text-3xl font-bold">{counts[s]}</p>
-                    <p className="text-xs font-bold uppercase tracking-wider mt-2 opacity-80">{s}</p>
+                    <p className="text-2xl sm:text-3xl font-bold">{counts[s]}</p>
+                    <p className="text-xs font-bold uppercase tracking-wider mt-1 sm:mt-2 opacity-80">{s}</p>
                 </button>;
             })}
         </div>
@@ -123,7 +123,7 @@ function Leave() {
         {
             /* Search */
         }
-        <div className="relative max-w-sm">
+        <div className="relative w-full max-w-sm">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" size={16} />
             <input
                 value={search}
@@ -260,7 +260,7 @@ function Leave() {
                                 {["Sick Leave", "Casual Leave", "Paid Leave", "Work From Home"].map((t) => <option key={t}>{t}</option>)}
                             </select>
                         </div>
-                        <div className="grid grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                             <div className="space-y-2">
                                 <label className="text-xs font-bold text-gray-400 uppercase tracking-widest px-1">Start Date *</label>
                                 <input type="date" value={form.startDate} onChange={(e) => setForm((p) => ({ ...p, startDate: e.target.value }))} className="w-full bg-gray-50 border border-gray-100 rounded-lg py-3 px-4 text-sm focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/5 outline-none transition-all font-medium text-textPrimary" />

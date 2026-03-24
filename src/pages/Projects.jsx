@@ -108,7 +108,7 @@ function Projects() {
         {
             /* Summary cards */
         }
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6">
             {[
                 { label: "Total Projects", value: visibleProjects.length, icon: Briefcase, color: "text-[#0f4184] bg-[#0f4184]/10" },
                 { label: "Active", value: visibleProjects.filter((p) => p.status === "Active").length, icon: FolderKanban, color: "text-[#0b3166] bg-[#0b3166]/10" },
@@ -119,12 +119,12 @@ function Projects() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.07 }}
-                className="bg-white p-6 rounded-xl border border-gray-100 flex items-center gap-4 cursor-default shadow-sm"
+                className="bg-white p-3 sm:p-6 rounded-xl border border-gray-100 flex items-center gap-2 sm:gap-4 cursor-default shadow-sm"
             >
-                <div className={`w-12 h-12 rounded-xl ${stat.color} flex items-center justify-center shrink-0 shadow-sm`}><stat.icon size={22} /></div>
-                <div>
-                    <p className="text-[11px] font-bold text-textSecondary uppercase tracking-widest">{stat.label}</p>
-                    <p className="text-2xl font-bold text-textPrimary mt-0.5">{stat.value}</p>
+                <div className={`w-9 h-9 sm:w-12 sm:h-12 rounded-xl ${stat.color} flex items-center justify-center shrink-0 shadow-sm`}><stat.icon size={18} className="sm:hidden" /><stat.icon size={22} className="hidden sm:block" /></div>
+                <div className="min-w-0">
+                    <p className="text-[10px] sm:text-[11px] font-bold text-textSecondary uppercase tracking-widest truncate">{stat.label}</p>
+                    <p className="text-xl sm:text-2xl font-bold text-textPrimary mt-0.5">{stat.value}</p>
                 </div>
             </motion.div>)}
         </div>
@@ -187,7 +187,7 @@ function Projects() {
                 {
                     /* Project Header */
                 }
-                <div className="p-5 flex items-center gap-5 cursor-pointer hover:bg-gray-50/50 transition-colors" onClick={() => toggleExpand(project.id)}>
+                <div className="p-4 sm:p-5 flex items-start sm:items-center gap-3 sm:gap-5 cursor-pointer hover:bg-gray-50/50 transition-colors flex-wrap" onClick={() => toggleExpand(project.id)}>
                     <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center shrink-0 font-bold text-xl shadow-lg group-hover:scale-105 transition-transform">
                         {project.name.charAt(0)}
                     </div>
@@ -425,7 +425,7 @@ function Projects() {
                                 className="w-full bg-gray-50 border border-gray-100 rounded-lg py-3 px-4 text-sm focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/5 outline-none transition-all font-medium text-textPrimary"
                             />
                         </div>)}
-                        <div className="grid grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                             <div className="space-y-2">
                                 <label className="text-xs font-bold text-gray-400 uppercase tracking-widest px-1">Start Date *</label>
                                 <input
@@ -501,7 +501,7 @@ function Projects() {
                                 {employees.filter((e) => e.status === "Active").map((e) => <option key={e.id} value={e.id}>{e.name} ({e.department})</option>)}
                             </select>
                         </div>
-                        <div className="grid grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                             <div className="space-y-2">
                                 <label className="text-xs font-bold text-gray-400 uppercase tracking-widest px-1">Due Date *</label>
                                 <input
