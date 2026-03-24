@@ -528,17 +528,6 @@ function Dashboard() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-lg sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight">
-            Hello, <span className="gradient-text">{currentUser?.name || "Member"}</span>
-            <span className="hidden sm:inline ml-2 text-slate-400 text-lg font-medium opacity-50 font-sans tracking-normal">({userRole || "Core Node"})</span>
-          </h1>
-          <p className="text-slate-400 text-[11px] sm:text-[13px] mt-1 font-semibold uppercase tracking-[0.2em] opacity-80">
-            {userRole === 'Employee' ? "Your tactical summary for today." : `Command Center for ${userRole} status.`}
-          </p>
-        </div>
-      </div>
 
       {renderDashboardContent()}
     </div>
