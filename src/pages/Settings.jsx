@@ -200,18 +200,18 @@ function Settings() {
                                 {
                                     /* Avatar Upgrade */
                                 }
-                                <div className="group relative flex items-center gap-8 p-8 mb-12 bg-gray-50 rounded-[32px] border border-gray-100 overflow-hidden shadow-sm transition-all hover:shadow-md">
+                                <div className="group relative flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 p-5 sm:p-8 mb-8 sm:mb-12 bg-gray-50 rounded-[32px] border border-gray-100 overflow-hidden shadow-sm transition-all hover:shadow-md">
                                     <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                                    <div className="relative w-28 h-28 rounded-[32px] bg-gradient-to-br from-[#0f4184] to-[#0b3166] flex items-center justify-center text-white text-4xl font-bold shadow-2xl group-hover:scale-105 transition-transform border-4 border-white">
+                                    <div className="relative w-20 h-20 sm:w-28 sm:h-28 rounded-[24px] sm:rounded-[32px] bg-gradient-to-br from-[#0f4184] to-[#0b3166] flex items-center justify-center text-white text-2xl sm:text-4xl font-bold shadow-2xl group-hover:scale-105 transition-transform border-4 border-white shrink-0">
                                         {accountForm.name.charAt(0)}
                                     </div>
                                     <div className="relative z-10">
-                                        <h4 className="text-xl font-bold text-textPrimary leading-none">{accountForm.name}</h4>
-                                        <p className="text-[11px] font-bold text-textSecondary uppercase tracking-widest mt-3 flex items-center gap-2">
+                                        <h4 className="text-lg sm:text-xl font-bold text-textPrimary leading-none">{accountForm.name}</h4>
+                                        <p className="text-[11px] font-bold text-textSecondary uppercase tracking-widest mt-2 sm:mt-3 flex items-center gap-2">
                                             <ShieldCheck size={12} className="text-primary" /> System Super-Admin • ID: #ADMIN-2024
                                         </p>
-                                        <div className="flex items-center gap-4 mt-6">
-                                            <button onClick={() => toast.info("File browser opened")} className="px-5 py-2.5 bg-white text-textPrimary text-[11px] font-bold uppercase tracking-widest rounded-xl shadow-sm border border-gray-200 hover:bg-gray-50 transition-all hover:border-primary/20">Update Photo</button>
+                                        <div className="flex items-center gap-3 sm:gap-4 mt-4 sm:mt-6 flex-wrap">
+                                            <button onClick={() => toast.info("File browser opened")} className="px-4 sm:px-5 py-2 sm:py-2.5 bg-white text-textPrimary text-[11px] font-bold uppercase tracking-widest rounded-xl shadow-sm border border-gray-200 hover:bg-gray-50 transition-all hover:border-primary/20">Update Photo</button>
                                             <button className="text-[11px] font-bold uppercase tracking-widest text-rose-500 hover:text-rose-600 transition-colors">Remove Avatar</button>
                                         </div>
                                     </div>
@@ -359,7 +359,7 @@ function Settings() {
                         }
                         {activeTab === "notifications" && <div className="space-y-12">
                             <section>
-                                <div className="flex items-center justify-between mb-12">
+                                <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 sm:mb-12 gap-4">
                                     <div className="flex items-center gap-4">
                                         <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary border border-primary/10 shadow-sm">
                                             <Bell size={24} />
@@ -369,19 +369,20 @@ function Settings() {
                                             <p className="text-xs font-bold text-textSecondary mt-1.5 uppercase tracking-widest">Manage how and where alerts are delivered</p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center gap-3 bg-gray-100 p-1.5 rounded-2xl border border-gray-200 shadow-inner">
+                                    <div className="flex items-center gap-3 bg-gray-100 p-1.5 rounded-2xl border border-gray-200 shadow-inner self-start sm:self-auto">
                                         <button onClick={() => {
                                             setNotifs((n) => n.map((x) => ({ ...x, email: true, push: true })));
                                             toast.success("Enabled all alerts");
-                                        }} className="px-5 py-2 text-[11px] font-bold uppercase tracking-widest text-primary hover:bg-white rounded-xl transition-all hover:shadow-sm">All On</button>
+                                        }} className="px-4 sm:px-5 py-2 text-[11px] font-bold uppercase tracking-widest text-primary hover:bg-white rounded-xl transition-all hover:shadow-sm">All On</button>
                                         <button onClick={() => {
                                             setNotifs((n) => n.map((x) => ({ ...x, email: false, push: false })));
                                             toast.info("Disabled all alerts");
-                                        }} className="px-5 py-2 text-[11px] font-bold uppercase tracking-widest text-textSecondary hover:bg-white rounded-xl transition-all hover:shadow-sm">Mute All</button>
+                                        }} className="px-4 sm:px-5 py-2 text-[11px] font-bold uppercase tracking-widest text-textSecondary hover:bg-white rounded-xl transition-all hover:shadow-sm">Mute All</button>
                                     </div>
                                 </div>
 
                                 <div className="bg-white border border-gray-100 rounded-[32px] overflow-hidden shadow-sm">
+                                    <div className="overflow-x-auto custom-scrollbar">
                                     <table className="w-full border-collapse">
                                         <thead>
                                             <tr className="bg-gray-50/50 border-b border-gray-100">
@@ -414,6 +415,7 @@ function Settings() {
                                             </tr>)}
                                         </tbody>
                                     </table>
+                                    </div>
                                 </div>
                             </section>
                         </div>}

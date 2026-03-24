@@ -155,7 +155,7 @@ function Topbar({ onMenuToggle }) {
     <div className="flex items-center gap-4 ml-auto">
       {/* Attendance Toggle */}
       <div className="flex items-center gap-4 pr-6 border-r border-gray-100/50">
-        <div className="flex flex-col items-end hidden sm:flex">
+        <div className="hidden sm:flex flex-col items-end">
           <span className={`text-[10px] font-black uppercase tracking-[0.2em] ${isCheckedIn ? "text-primary" : "text-slate-400"} transition-colors`}>
             {isCheckedIn ? "Checked In" : "Checked Out"}
           </span>

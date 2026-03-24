@@ -195,7 +195,7 @@ function Grievances() {
                             />
                         </div>
 
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div className="space-y-2">
                                 <label className="text-[11px] font-bold text-textSecondary uppercase tracking-widest ml-1">Category</label>
                                 <div className="relative">
