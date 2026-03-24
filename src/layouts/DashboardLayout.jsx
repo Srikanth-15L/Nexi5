@@ -217,8 +217,11 @@ function DashboardLayout() {
                                 {isActive && (mobile || isSidebarOpen) && (
                                   <motion.div
                                     layoutId="activeNav"
-                                    className="absolute right-3 w-1.5 h-1.5 rounded-full bg-white/40"
+                                    className="absolute right-3 w-1.5 h-1.5 rounded-full bg-white/90 shadow-[0_0_8px_rgba(255,255,255,0.8)]"
                                   />
+                                )}
+                                {!isActive && (mobile || isSidebarOpen) && (
+                                  <div className="absolute right-3 w-1.5 h-1.5 rounded-full bg-[#0f4184] opacity-0 transition-all duration-300 transform scale-50 group-hover/nav:opacity-100 group-hover/nav:scale-100 shadow-[0_0_8px_rgba(15,65,132,0.5)]" />
                                 )}
                               </>
                             )}
@@ -306,12 +309,12 @@ function DashboardLayout() {
           onClick={() => setMobileSidebarOpen(false)}
           className="fixed inset-0 bg-slate-900/20 backdrop-blur-[2px] z-40 lg:hidden"
         />
-        <motion.aside
-          initial={{ x: -280 }}
+          <motion.aside
+          initial={{ x: -260 }}
           animate={{ x: 0 }}
-          exit={{ x: -280 }}
+          exit={{ x: -260 }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          className="fixed left-0 top-0 h-full w-[300px] glass border-r border-gray-100/50 flex flex-col z-50 lg:hidden sidebar-shadow"
+          className="fixed left-0 top-0 h-full w-[260px] glass border-r border-gray-100/50 flex flex-col z-50 lg:hidden sidebar-shadow"
         >
           <SidebarContent
             mobile
@@ -332,8 +335,8 @@ function DashboardLayout() {
       /* Desktop Sidebar */
     }
     <motion.aside
-      initial={{ width: 300 }}
-      animate={{ width: isSidebarOpen ? 300 : 96 }}
+      initial={{ width: 260 }}
+      animate={{ width: isSidebarOpen ? 260 : 92 }}
       transition={{ type: "spring", stiffness: 280, damping: 30 }}
       className="hidden lg:flex h-full glass border-r border-gray-100/50 flex-col z-20 relative overflow-visible group sidebar-shadow"
     >
