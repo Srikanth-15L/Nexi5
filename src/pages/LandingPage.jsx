@@ -68,7 +68,7 @@ export default function LandingPage() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.1 }}
-            className={`min-h-screen font-sans overflow-x-hidden selection:bg-primary/30 transition-colors duration-300 relative ${isDark ? 'dark auth-background text-white' : 'text-dark bg-white'}`}
+            className={`min-h-screen font-sans selection:bg-primary/30 transition-colors duration-300 relative ${isDark ? 'dark auth-background text-white' : 'text-dark bg-white'}`}
         >
             <Navbar
                 onLoginClick={handleLogin}
